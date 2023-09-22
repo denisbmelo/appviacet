@@ -15,6 +15,8 @@ namespace appviacet.Services.Internal
             _appViaCetContext = context;
         }
 
+        public ContasService() { }
+
         public virtual async Task<List<Conta>> GetContasAsync()
         {
             try
