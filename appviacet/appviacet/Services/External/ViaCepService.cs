@@ -15,15 +15,25 @@ namespace appviacet.Services.External
 
         public async Task<ViaCepResponse> ConsultarCEPAsync(string cep)
         {
-            var request = new RestRequest($"{cep}/json", Method.Get);
-            var response = await _client.ExecuteAsync(request);
 
-            if (response.IsSuccessful)
+            try
             {
-                return JsonConvert.DeserializeObject<ViaCepResponse>(response.Content);
-            }
+                var request = new RestRequest($"{cep}/json", Method.Get);
+                var response = await _client.ExecuteAsync(request);
 
-            return new ViaCepResponse(); 
+                if (response.IsSuccessful)
+                {
+                    return JsonConvert.DeserializeObject<ViaCepResponse>(response.Content);
+                }
+
+                return new ViaCepResponse();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+          
         }
     }
 }

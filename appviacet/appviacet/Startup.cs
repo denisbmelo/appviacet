@@ -21,11 +21,11 @@ namespace appviacet
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<AppViaCetContext>(options =>
-            //{
-            //    options.UseInMemoryDatabase("DbMemory");
-            //});
-            //services.Single<ViaCepService>();
+            services.AddDbContext<AppViaCetContext>(options =>
+            {
+                options.UseInMemoryDatabase("DbMemory");
+            }, ServiceLifetime.Scoped);
+
             services.AddControllers();
             services.AddSwaggerGen();
         }

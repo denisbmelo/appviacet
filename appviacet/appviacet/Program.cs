@@ -1,5 +1,7 @@
 using appviacet.Context;
 using appviacet.Services.External;
+using appviacet.Services.Internal;
+using appviacet.Services.Internal.Interface;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,13 +17,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ViaCepService>();
+builder.Services.AddScoped<IContasService, ContasService>();
 
 builder.Services.AddOptions();
 
-//builder.Services.AddDbContext<AppViaCetContext>(options =>
-//{
-//    options.UseInMemoryDatabase("DbMemory");
-//});
+builder.Services.AddDbContext<AppViaCetContext>(options =>
+{
+    options.UseInMemoryDatabase("DbMemory");
+}, ServiceLifetime.Scoped);
 
 var app = builder.Build();
 
